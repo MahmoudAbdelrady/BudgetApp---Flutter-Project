@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mainflutterproject/Frontend/Core/Constants/appassets.dart';
 import 'package:mainflutterproject/Frontend/Core/Constants/appcolors.dart';
+import 'package:mainflutterproject/Frontend/Core/Localization/changelocale.dart';
 import 'package:mainflutterproject/Frontend/View/Widget/Home/Containers/customcontainer.dart';
 import 'package:mainflutterproject/Frontend/View/Widget/Home/Containers/customcontainerheader.dart';
 import 'package:mainflutterproject/Frontend/View/Widget/Home/Containers/customdivider.dart';
+import 'package:mainflutterproject/Frontend/View/Widget/Home/Settings/settingscheckboxrow.dart';
 import 'package:mainflutterproject/Frontend/View/Widget/Home/Settings/settingsthemecard.dart';
 
-class SettingsCustomCard extends StatelessWidget {
+class SettingsCustomCard extends GetView<LocaleController> {
   const SettingsCustomCard({Key? key}) : super(key: key);
 
   @override
@@ -14,34 +17,42 @@ class SettingsCustomCard extends StatelessWidget {
     return Column(
       children: [
         CustomContainer(
-          contHeight: 250,
           contChild: Column(
             children: [
               const SizedBox(
                 height: 10,
               ),
-              const CustomContainerHeader(headerText: "Theme"),
+              CustomContainerHeader(headerText: "Theme".tr),
               const CustomDivider(marginWidth: 100),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    InkWell(
-                      onTap: () {},
-                      child: const SizedBox(
-                          height: 150,
-                          width: 150,
-                          child: Card(
-                            child: SettingsThemeCard(
-                              first: AppColors.primarycolor,
-                              second: AppColors.secondarycolor,
-                              themeIcon: Icons.light_mode,
-                              themeIconColor: Colors.yellow,
-                            ),
-                          )),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          child: const SizedBox(
+                              height: 150,
+                              width: 150,
+                              child: Card(
+                                child: SettingsThemeCard(
+                                  first: AppColors.primarycolor,
+                                  second: AppColors.secondarycolor,
+                                  themeIcon: Icons.light_mode,
+                                  themeIconColor: Colors.yellow,
+                                ),
+                              )),
+                        ),
+                        SettingsCheckBoxRow(
+                            title: "Light mode".tr,
+                            rowType: "theme",
+                            visible: true)
+                      ],
                     ),
-                    InkWell(
+                    /*InkWell(
                       onTap: () {},
                       child: const SizedBox(
                           height: 150,
@@ -54,14 +65,14 @@ class SettingsCustomCard extends StatelessWidget {
                               themeIconColor: Colors.yellow,
                             ),
                           )),
-                    )
+                    )*/
                   ],
                 ),
               ),
             ],
           ),
         ),
-        CustomContainer(
+        /*CustomContainer(
           contHeight: 120,
           contChild: Column(
             children: [
@@ -101,15 +112,14 @@ class SettingsCustomCard extends StatelessWidget {
               ),
             ],
           ),
-        ),
+        ),*/
         CustomContainer(
-          contHeight: 130,
           contChild: Column(
             children: [
               const SizedBox(
                 height: 10,
               ),
-              const CustomContainerHeader(headerText: "Language"),
+              CustomContainerHeader(headerText: "Language".tr),
               const CustomDivider(marginWidth: 100),
               const SizedBox(
                 height: 10,
@@ -126,9 +136,19 @@ class SettingsCustomCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(120),
                             color: AppColors.primarycolor),
                         child: InkWell(
-                            onTap: () {}, child: Image.asset(AppAssets.uslogo)),
+                            onTap: () {
+                              controller.changeLang("en");
+                            },
+                            child: Image.asset(AppAssets.uslogo)),
                       ),
-                      const Text("English")
+                      SettingsCheckBoxRow(
+                          title: "English".tr,
+                          rowType: "language",
+                          visible: controller.myServices.sharedPreferences
+                                      .getString("Lang") ==
+                                  "en"
+                              ? true
+                              : false)
                     ],
                   ),
                   Column(
@@ -140,9 +160,22 @@ class SettingsCustomCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(120),
                             color: AppColors.primarycolor),
                         child: InkWell(
-                            onTap: () {}, child: Image.asset(AppAssets.eglogo)),
+                            onTap: () {
+                              controller.changeLang("ar");
+                            },
+                            child: Image.asset(AppAssets.eglogo)),
                       ),
-                      const Text("Arabic")
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      SettingsCheckBoxRow(
+                          title: "Arabic".tr,
+                          rowType: "language",
+                          visible: controller.myServices.sharedPreferences
+                                      .getString("Lang") ==
+                                  "ar"
+                              ? true
+                              : false)
                     ],
                   ),
                 ],

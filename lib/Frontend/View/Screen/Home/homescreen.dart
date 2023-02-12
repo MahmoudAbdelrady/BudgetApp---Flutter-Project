@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:mainflutterproject/Frontend/Controller/Budget/addautotransaction_controller.dart';
+import 'package:mainflutterproject/Frontend/Controller/Budget/addtransaction_controller.dart';
 import 'package:mainflutterproject/Frontend/Controller/Home/home_controller.dart';
 import 'package:mainflutterproject/Frontend/Core/Constants/appcolors.dart';
 import 'package:mainflutterproject/Frontend/Core/Functions/exitappalert.dart';
+import 'package:mainflutterproject/Frontend/View/Widget/Home/Budget/addautotransactionform.dart';
+import 'package:mainflutterproject/Frontend/View/Widget/Home/Budget/addtransactionform.dart';
 import 'package:mainflutterproject/Frontend/View/Widget/Home/custombottomappbar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,7 +24,9 @@ class HomeScreen extends StatelessWidget {
           builder: (controller) => Scaffold(
             backgroundColor: const Color.fromARGB(255, 248, 245, 250),
             floatingActionButton: Visibility(
-              visible: controller.currentPage == controller.tabspages.length - 1
+              visible: controller.currentPage ==
+                          controller.tabspages.length - 1 ||
+                      controller.currentPage == controller.tabspages.length - 3
                   ? false
                   : true,
               child: FloatingActionButton.extended(
@@ -28,8 +34,66 @@ class HomeScreen extends StatelessWidget {
                   // Edit it
                   showDialog(
                       context: context,
-                      builder: (context) => const AlertDialog(
-                            title: Text("Add Transaction"),
+                      builder: (context) => AlertDialog(
+                            title: Text("Add Transaction".tr),
+                            // edit it
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                MaterialButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      side: const BorderSide(
+                                          color: AppColors.primarycolor)),
+                                  onPressed: () {
+                                    Get.back();
+                                    showDialog(
+                                            context: context,
+                                            builder: (context) => AlertDialog(
+                                                scrollable: true,
+                                                title: Text("Add Transaction".tr),
+                                                content:
+                                                    const AddTransactionForm()))
+                                        .then((value) {
+                                      AddTransactionController
+                                          addTransactionController =
+                                          Get.put(AddTransactionController());
+                                      addTransactionController.clearFields();
+                                      Get.delete<AddTransactionController>();
+                                    });
+                                  },
+                                  child: Text("Income/Expence".tr),
+                                ),
+                                MaterialButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      side: const BorderSide(
+                                          color: AppColors.primarycolor)),
+                                  onPressed: () {
+                                    Get.back();
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                              scrollable: true,
+                                              title: Text(
+                                                  "Add auto transaction".tr),
+                                              content:
+                                                  const AutoTransactionForm(),
+                                            )).then((value) {
+                                      AddAutoTransactionController
+                                          addAutoTransactionController =
+                                          Get.put(
+                                              AddAutoTransactionController());
+                                      addAutoTransactionController
+                                          .clearFields();
+                                      Get.delete<
+                                          AddAutoTransactionController>();
+                                    });
+                                  },
+                                  child: Text("Auto Income/Expence".tr),
+                                ),
+                              ],
+                            ),
                           ));
                 },
                 backgroundColor: AppColors.primarycolor,

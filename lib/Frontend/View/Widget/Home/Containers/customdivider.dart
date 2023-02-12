@@ -8,10 +8,7 @@ class CustomDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: marginWidth),
-      child: const Divider(
-        height: 5,
-        thickness: 2,
-      ),
+      child: const Divider(height: 5, thickness: 2, color: Colors.black),
     );
   }
 }

@@ -19,7 +19,7 @@ class SuccessReset extends StatelessWidget {
           Text(
             "Successful reset".tr,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline1,
+            style: Theme.of(context).textTheme.displayLarge,
           ),
           const SizedBox(
             height: 20,

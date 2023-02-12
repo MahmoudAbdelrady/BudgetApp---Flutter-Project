@@ -11,10 +11,37 @@ class AppApiLinks {
   static const linkresetpassword =
       "$server/Auth/ForgetPassword/resetpassword.php";
 
-  // ---------------- Budget Modification ----------------
+  // ---------------- Budget ----------------
   static const linkviewbudget = "$server/Budget/View/viewbudget.php";
-  static const linkviewexpinc = "$server/Budget/View/viewexpinc.php";
   static const linkhistory = "$server/Budget/View/history.php";
-  static const linkaddbudget = "$server/Budget/addtotalbudget.php";
+  static const linkdeletehistory = "$server/Budget/History/deletehistory.php";
   static const linkaddtransaction = "$server/Budget/addtransaction.php";
+  static const linkaddautotransaction = "$server/Budget/addautotransaction.php";
+  static const linkeditautotransaction =
+      "$server/Budget/editautotransaction.php";
+  static const linkdeleteautotransaction =
+      "$server/Budget/deleteautotransaction.php";
+  static const linkviewautotransactions =
+      "$server/Budget/viewautotransactions.php";
+  static const linkmodifyautotransactiondate =
+      "$server/Budget/modifyautotransactiondate.php";
+  static const linkviewaccountwallet =
+      "$server/Budget/Bank Accounts and Wallets/viewaccount-wallet.php";
+  static const linkaddaccountwallet =
+      "$server/Budget/Bank Accounts and Wallets/addaccount-wallet.php";
+  static const linkeditaccountwallet =
+      "$server/Budget/Bank Accounts and Wallets/editaccount-wallet.php";
+  static const linkdeleteaccountwallet =
+      "$server/Budget/Bank Accounts and Wallets/deleteaccount-wallet.php";
+
+  // ---------------- Profile ----------------
+  static const linkeditusernamephone = "$server/Profile/editpusernamephone.php";
+  static const linkchangeemail = "$server/Profile/profilechangeemail.php";
+  static const linkgeneratecode = "$server/Profile/generatevcode.php";
+  static const linkprofileverifycode = "$server/Profile/profileverifycode.php";
+
+  // ---------------- Stats ----------------
+  static const linkstatsthisweek = "$server/Stats/statsthisweek.php";
+  static const linkstatsthismonth = "$server/Stats/statsthismonth.php";
+  static const linkstatsthisyear = "$server/Stats/statsthisyear.php";
 }

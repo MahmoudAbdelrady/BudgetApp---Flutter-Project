@@ -21,31 +21,45 @@ class HomeScreenControllerImp extends HomeScreenController {
   ];
   List<Widget> tabspages = [
     Tab(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: const [Text("Home"), Icon(Icons.home)],
-      ),
+      child: GetBuilder<HomeScreenControllerImp>(builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [Expanded(child: Text("Home".tr)), const Icon(Icons.home)],
+        );
+      }),
     ),
     Tab(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: const [Text("Stats"), Icon(Icons.bar_chart_outlined)],
-      ),
+      child: GetBuilder<HomeScreenControllerImp>(builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(child: Text("Stats".tr)),
+            const Icon(Icons.bar_chart_outlined)
+          ],
+        );
+      }),
     ),
     Tab(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-          Text("Budget"),
-          Icon(Icons.account_balance_wallet_outlined)
-        ],
-      ),
+      child: GetBuilder<HomeScreenControllerImp>(builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(child: Text("Budget".tr)),
+            const Icon(Icons.account_balance_wallet_outlined)
+          ],
+        );
+      }),
     ),
     Tab(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: const [Text("Settings"), Icon(Icons.settings_outlined)],
-      ),
+      child: GetBuilder<HomeScreenControllerImp>(builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(child: Text("Settings".tr)),
+            const Icon(Icons.settings_outlined)
+          ],
+        );
+      }),
     )
   ];
   @override

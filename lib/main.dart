@@ -4,6 +4,7 @@ import 'package:mainflutterproject/Frontend/Bindings/initialbindings.dart';
 import 'package:mainflutterproject/Frontend/Core/Localization/changelocale.dart';
 import 'package:mainflutterproject/Frontend/Core/Localization/translation.dart';
 import 'package:mainflutterproject/Frontend/Core/Services/myservices.dart';
+import 'package:mainflutterproject/initial.dart';
 import 'package:mainflutterproject/routes.dart';
 
 void main() async {
@@ -25,6 +26,12 @@ class MyApp extends StatelessWidget {
         locale: localeController.language,
         theme: localeController.appTheme,
         getPages: routes,
+        onInit: () async {
+          localeController.myServices.sharedPreferences.getString("step") ==
+                  2.toString()
+              ? await autoTrans()
+              : null;
+        },
         initialBinding: InitialBindings());
   }
 }

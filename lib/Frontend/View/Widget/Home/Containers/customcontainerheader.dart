@@ -9,7 +9,7 @@ class CustomContainerHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(headerText,
-        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
             color: AppColors.primarycolor,
             fontSize: 18,
             fontWeight: FontWeight.bold));

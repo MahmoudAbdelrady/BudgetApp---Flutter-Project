@@ -21,7 +21,7 @@ class AuthButton extends StatelessWidget {
           authButtonText,
           style: Theme.of(context)
               .textTheme
-              .bodyText1!
+              .bodyLarge!
               .copyWith(color: Colors.white, fontSize: 18),
         ));
   }

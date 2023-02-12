@@ -11,7 +11,7 @@ import firebase_core
 import firebase_messaging
 import firebase_storage
 import geolocator_apple
-import shared_preferences_macos
+import shared_preferences_foundation
 import sqflite
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {

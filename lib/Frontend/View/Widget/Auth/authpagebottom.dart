@@ -19,13 +19,13 @@ class AuthPageFooter extends StatelessWidget {
       children: [
         Text(
           authPageFooter,
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         InkWell(
           onTap: authPageFooteronTap,
           child: Text(
             authPageFooterbtnText,
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontSize: 16,
                   color: AppColors.buttonscolor,
                 ),

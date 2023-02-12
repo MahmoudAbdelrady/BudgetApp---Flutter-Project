@@ -72,7 +72,7 @@ class Login extends StatelessWidget {
                                 textAlign: TextAlign.end,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                         fontSize: 15,
                                         color: AppColors.thirdcolor,

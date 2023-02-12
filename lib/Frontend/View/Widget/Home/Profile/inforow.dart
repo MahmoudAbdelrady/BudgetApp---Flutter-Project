@@ -4,14 +4,12 @@ class InfoRow extends StatelessWidget {
   final String mainInfo;
   final String linkInfo;
   final String type;
-  final IconData? socialmediaIcon;
-  const InfoRow(
-      {Key? key,
-      required this.mainInfo,
-      required this.linkInfo,
-      required this.type,
-      this.socialmediaIcon})
-      : super(key: key);
+  const InfoRow({
+    Key? key,
+    required this.mainInfo,
+    required this.linkInfo,
+    required this.type,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,32 +18,18 @@ class InfoRow extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          type == "social"
-              ? Row(
-                  children: [
-                    Icon(socialmediaIcon),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(mainInfo,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText1!
-                            .copyWith(fontSize: 17, color: Colors.black))
-                  ],
-                )
-              : Text(mainInfo,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(fontSize: 17, color: Colors.black)),
+          Text(mainInfo,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .copyWith(fontSize: 17, color: Colors.black)),
           const SizedBox(
             width: 13,
           ),
           Text(linkInfo,
               style: Theme.of(context)
                   .textTheme
-                  .bodyText1!
+                  .bodyLarge!
                   .copyWith(fontSize: 17, color: Colors.grey))
         ],
       ),
