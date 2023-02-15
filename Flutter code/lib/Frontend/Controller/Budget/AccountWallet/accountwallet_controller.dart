@@ -21,7 +21,7 @@ class AccountWalletController extends GetxController {
       awList.addAll(response['data']);
       statusRequest = StatusRequest.success;
     } else {
-      statusRequest = StatusRequest.failure;
+      statusRequest = StatusRequest.empty;
     }
     update();
   }

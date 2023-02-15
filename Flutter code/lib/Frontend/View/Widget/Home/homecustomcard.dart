@@ -63,7 +63,10 @@ class HomeCustomCard extends StatelessWidget {
                 title: Container(
                   margin: const EdgeInsets.only(bottom: 5),
                   child: Text(
-                    "${controller.budget}\$",
+                    controller.myServices.sharedPreferences.getString("Lang") ==
+                            "en"
+                        ? "${controller.budget}\$"
+                        : "\$${controller.budget}",
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 35,

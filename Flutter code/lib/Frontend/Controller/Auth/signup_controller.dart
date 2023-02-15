@@ -27,14 +27,14 @@ class SignUpControllerImp extends SignUpController {
   signup() async {
     var formdata = formstate.currentState;
     if (formdata!.validate()) {
-      StatusRequest.loading;
+      statusRequest = StatusRequest.loading;
       update();
       var response = await signUpData.postData(
           username.text, email.text, phone.text, pass.text);
       statusRequest = handlingData(response);
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
-          Get.offNamed(AppRoutes.verifycode, arguments: {"Email": email.text});
+          Get.toNamed(AppRoutes.verifycode, arguments: {"Email": email.text});
         } else {
           Get.defaultDialog(title: "Alert".tr, middleText: "SignUp failed".tr);
         }

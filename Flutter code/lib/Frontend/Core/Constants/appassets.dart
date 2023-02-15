@@ -12,6 +12,7 @@ class AppAssets {
   static const String servererror = "Assets/Lottie/servererror.json";
   static const String serverexception = "Assets/Lottie/serverexception.json";
   static const String success = "Assets/Lottie/success.json";
+  static const String empty = "Assets/Lottie/empty.json";
   static const String uslogo = "Assets/Images/uslogo.jpg";
   static const String eglogo = "Assets/Images/eglogo.png";
   static const String editbtn = "Assets/Images/Edit.SVG";

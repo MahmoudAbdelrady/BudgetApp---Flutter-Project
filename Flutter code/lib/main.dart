@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     LocaleController localeController = Get.put(LocaleController());
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Wallet-E',
         translations: MyTranslation(),
         locale: localeController.language,
         theme: localeController.appTheme,

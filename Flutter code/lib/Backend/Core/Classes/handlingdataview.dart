@@ -20,7 +20,10 @@ class HandlingDataView extends StatelessWidget {
                 ? Lottie.asset(AppAssets.servererror)
                 : statusRequest == StatusRequest.failure
                     ? Lottie.asset(AppAssets.serverexception)
-                    : widget;
+                    : statusRequest == StatusRequest.empty
+                        ? Lottie.asset(AppAssets.empty,
+                            repeat: false, height: 250, width: 250)
+                        : widget;
   }
 }
 

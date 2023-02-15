@@ -4,12 +4,13 @@ import 'package:mainflutterproject/linkapi.dart';
 class AddAutoTransactionData {
   Crud crud;
   AddAutoTransactionData(this.crud);
-  postData(String userid, String title, String titleType, String amount,
-      String type, String rate, String date) async {
+  postData(String userid, String awName, String awType, String title,
+      String amount, String type, String rate, String date) async {
     var response = await crud.postData(AppApiLinks.linkaddautotransaction, {
       "User_ID": userid,
+      "AW_Name": awName,
+      "AW_Type": awType,
       "Title": title,
-      "Title_Type": titleType,
       "Amount": amount,
       "Type": type,
       "ActionRate": rate,

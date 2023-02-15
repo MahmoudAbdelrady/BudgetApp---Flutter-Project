@@ -11,7 +11,6 @@ class AccountWalletSelectBar extends StatelessWidget {
     Get.put(AccountWalletController());
     return Container(
       height: 50,
-      width: 230,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(50)),
       child: GetBuilder<AccountWalletController>(builder: (controller) {

@@ -34,10 +34,14 @@ autoTrans() async {
               AutoTransactionModel.fromJson(
                       initialAutoTransactionController.userAutoTransactions[i])
                   .title!;
-          initialAutoTransactionController.transTitleType.text =
+          initialAutoTransactionController.awData =
               AutoTransactionModel.fromJson(
                       initialAutoTransactionController.userAutoTransactions[i])
-                  .titleType!;
+                  .awName!;
+          initialAutoTransactionController.awData =
+              AutoTransactionModel.fromJson(
+                      initialAutoTransactionController.userAutoTransactions[i])
+                  .awType!;
           String quantity = (amount *
                   double.parse(AutoTransactionModel.fromJson(
                           initialAutoTransactionController
@@ -77,9 +81,13 @@ autoTrans() async {
                     initialAutoTransactionController.userAutoTransactions[i])
                 .title!;
             initialAutoTransactionController
-                .transTitleType.text = AutoTransactionModel.fromJson(
+                .awData = AutoTransactionModel.fromJson(
                     initialAutoTransactionController.userAutoTransactions[i])
-                .titleType!;
+                .awName!;
+            initialAutoTransactionController
+                .awData = AutoTransactionModel.fromJson(
+                    initialAutoTransactionController.userAutoTransactions[i])
+                .awType!;
             String quantity = (amount *
                     double.parse(AutoTransactionModel.fromJson(
                             initialAutoTransactionController
@@ -120,9 +128,13 @@ autoTrans() async {
                     initialAutoTransactionController.userAutoTransactions[i])
                 .title!;
             initialAutoTransactionController
-                .transTitleType.text = AutoTransactionModel.fromJson(
+                .awData = AutoTransactionModel.fromJson(
                     initialAutoTransactionController.userAutoTransactions[i])
-                .titleType!;
+                .awName!;
+            initialAutoTransactionController
+                .awData = AutoTransactionModel.fromJson(
+                    initialAutoTransactionController.userAutoTransactions[i])
+                .awType!;
             String quantity = (amount *
                     double.parse(AutoTransactionModel.fromJson(
                             initialAutoTransactionController
@@ -160,9 +172,13 @@ autoTrans() async {
                     initialAutoTransactionController.userAutoTransactions[i])
                 .title!;
             initialAutoTransactionController
-                .transTitleType.text = AutoTransactionModel.fromJson(
+                .awData = AutoTransactionModel.fromJson(
                     initialAutoTransactionController.userAutoTransactions[i])
-                .titleType!;
+                .awName!;
+            initialAutoTransactionController
+                .awData = AutoTransactionModel.fromJson(
+                    initialAutoTransactionController.userAutoTransactions[i])
+                .awType!;
             String quantity = (amount *
                     double.parse(AutoTransactionModel.fromJson(
                             initialAutoTransactionController

@@ -1,8 +1,11 @@
 class AutoTransactionModel {
-  int? autoTransID;
-  int? userID;
+  // int? autoTransID;
+  String? autoTransID;
+  String? userID;
+  String? awName;
+  String? awType;
+  // String? userID;
   String? title;
-  String? titleType;
   String? amount;
   String? type;
   String? actionRate;
@@ -11,8 +14,9 @@ class AutoTransactionModel {
   AutoTransactionModel(
       {this.autoTransID,
       this.userID,
+      this.awName,
+      this.awType,
       this.title,
-      this.titleType,
       this.amount,
       this.type,
       this.actionRate,
@@ -21,8 +25,9 @@ class AutoTransactionModel {
   AutoTransactionModel.fromJson(Map<String, dynamic> json) {
     autoTransID = json['Auto_TransID'];
     userID = json['User_ID'];
+    awName = json['AW_Name'];
+    awType = json['AW_Type'];
     title = json['Title'];
-    titleType = json['Title_Type'];
     amount = json['Amount'].toString();
     type = json['Type'];
     actionRate = json['ActionRate'];
@@ -33,8 +38,9 @@ class AutoTransactionModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['Auto_TransID'] = autoTransID;
     data['User_ID'] = userID;
+    data['AW_Name'] = awName;
+    data['AW_Type'] = awType;
     data['Title'] = title;
-    data['Title_Type'] = titleType;
     data['Amount'] = amount;
     data['Type'] = type;
     data['ActionRate'] = actionRate;

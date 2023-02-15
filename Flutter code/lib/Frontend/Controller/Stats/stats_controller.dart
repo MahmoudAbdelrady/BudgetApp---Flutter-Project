@@ -39,12 +39,12 @@ class StatsController extends GetxController {
               ? 0
               : response['data']['$i']['Total_Income'] == null
                   ? 0
-                  : response['data']['$i']['Total_Income'] + .0;
+                  : double.parse(response['data']['$i']['Total_Income']) + .0;
           double y2 = response['data']['$i'] == null
               ? 0
               : response['data']['$i']['Total_Expence'] == null
                   ? 0
-                  : response['data']['$i']['Total_Expence'] + .0;
+                  : double.parse(response['data']['$i']['Total_Expence']) + .0;
           statsData.add(ChartData("${"Day".tr} $i", y1, y2));
         }
       }
@@ -75,12 +75,14 @@ class StatsController extends GetxController {
               ? 0
               : response['data']['$temp']['Total_Income'] == null
                   ? 0
-                  : response['data']['$temp']['Total_Income'] + .0;
+                  : double.parse(response['data']['$temp']['Total_Income']) +
+                      .0;
           double y2 = response['data']['$temp'] == null
               ? 0
               : response['data']['$temp']['Total_Expence'] == null
                   ? 0
-                  : response['data']['$temp']['Total_Expence'] + .0;
+                  : double.parse(response['data']['$temp']['Total_Expence']) +
+                      .0;
           statsData.add(ChartData("${"Week".tr} $i", y1, y2));
         }
       }
@@ -111,12 +113,12 @@ class StatsController extends GetxController {
               ? 0
               : response['data']['$i']['Total_Income'] == null
                   ? 0
-                  : response['data']['$i']['Total_Income'] + .0;
+                  : double.parse(response['data']['$i']['Total_Income']) + .0;
           double y2 = response['data']['$i'] == null
               ? 0
               : response['data']['$i']['Total_Expence'] == null
                   ? 0
-                  : response['data']['$i']['Total_Expence'] + .0;
+                  : double.parse(response['data']['$i']['Total_Expence']) + .0;
           statsData.add(
               ChartData(DateFormat('MMM').format(DateTime(0, i)).tr, y1, y2));
         }

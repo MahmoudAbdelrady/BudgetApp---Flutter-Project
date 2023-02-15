@@ -10,7 +10,9 @@ class ViewBudgetController extends GetxController {
     var response = await viewBudgetData
         .postData(myServices.sharedPreferences.getString("id")!);
     if (response['status'] == "success") {
-      budget = response['data']['User_TotalBudget'].toString();
+      budget = response['data']['Total'].toString() == "null"
+          ? "0"
+          : response['data']['Total'].toString();
       update();
     }
   }

@@ -5,6 +5,8 @@ import 'package:mainflutterproject/Backend/RemoteData/Budget/View/historydelete.
 import 'package:mainflutterproject/Frontend/Core/Services/myservices.dart';
 
 class HistoryController extends GetxController {
+  String? awName;
+  String? awType;
   String? transID;
   String? quantity;
   String? type;
@@ -27,7 +29,7 @@ class HistoryController extends GetxController {
       statusRequest = StatusRequest.success;
       historyDatalist.addAll(response['data']);
     } else {
-      statusRequest = StatusRequest.failure;
+      statusRequest = StatusRequest.empty;
     }
     update();
   }
@@ -35,6 +37,8 @@ class HistoryController extends GetxController {
   deleteHistory() async {
     var response = await historyDeleteData.postData(
         myServices.sharedPreferences.getString("id")!,
+        awName!,
+        awType!,
         transID!,
         quantity!,
         type!);

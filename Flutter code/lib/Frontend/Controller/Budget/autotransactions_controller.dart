@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mainflutterproject/Backend/Core/Classes/statusrequest.dart';
 import 'package:mainflutterproject/Backend/RemoteData/Budget/deleteautotransaction.dart';
 import 'package:mainflutterproject/Backend/RemoteData/Budget/viewautotransactions.dart';
 import 'package:mainflutterproject/Frontend/Core/Services/myservices.dart';
@@ -12,12 +13,18 @@ class AutoTransactionsController extends GetxController {
       ViewAutoTransactionsData(Get.find());
   DeleteAutoTransactionData deleteAutoTransactionData =
       DeleteAutoTransactionData(Get.find());
+  StatusRequest statusRequest = StatusRequest.none;
   viewAutoTransactions(String autoType) async {
+    statusRequest = StatusRequest.loading;
+    update();
     autoTransactions.clear();
     var response = await viewAutoTransactionsData.postData(
         myServices.sharedPreferences.getString("id")!, autoType);
     if (response['status'] == "success") {
+      statusRequest = StatusRequest.success;
       autoTransactions.addAll(response['data']);
+    } else {
+      statusRequest = StatusRequest.empty;
     }
     update();
   }

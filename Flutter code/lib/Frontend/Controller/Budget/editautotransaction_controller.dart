@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mainflutterproject/Backend/Core/Classes/statusrequest.dart';
+import 'package:mainflutterproject/Backend/RemoteData/Budget/AccountWallet/viewaccountwallet.dart';
 import 'package:mainflutterproject/Backend/RemoteData/Budget/editautotransaction.dart';
 import 'package:mainflutterproject/Frontend/Core/Constants/appcolors.dart';
 import 'package:mainflutterproject/Frontend/Core/Services/myservices.dart';
@@ -8,31 +9,45 @@ import 'package:mainflutterproject/Frontend/Core/Services/myservices.dart';
 class EditAutoTransactionController extends GetxController {
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
   late TextEditingController title;
-  late TextEditingController titleType;
   late TextEditingController amount;
   late TextEditingController actionDate;
   String autoTransID = "";
-  String transType = "Choose transaction type";
-  String actionRate = "Choose rate";
+  String transType = "Choose transaction type".tr;
+  String awType = "ChooseTypeNo".tr;
+  // String awData = "Choose bank account/wallet".tr;
+  String awData = "";
+  String actionRate = "Choose rate".tr;
+  List awList = [];
   MyServices myServices = Get.find();
   StatusRequest statusRequest = StatusRequest.none;
   EditAutoTransactionData editAutoTransactionData =
       EditAutoTransactionData(Get.find());
+  ViewAccountWalletData viewAccountWalletData =
+      ViewAccountWalletData(Get.find());
   editAutoTransaction() async {
     var formdata = formstate.currentState;
     if (formdata!.validate()) {
-      if (transType != "Choose transaction type" &&
-          actionRate != "Choose rate") {
+      if (transType != "Choose transaction type".tr &&
+          awType != "ChooseTypeNo".tr &&
+          (awData != "" && awData != "Choose bank account/wallet".tr) &&
+          actionRate != "Choose rate".tr) {
         statusRequest = StatusRequest.loading;
         update();
         var response = await editAutoTransactionData.postData(
             autoTransID,
             myServices.sharedPreferences.getString("id")!,
+            awData,
+            awType == "Bank Account".tr ? "Bank Account" : "Wallet",
             title.text,
-            titleType.text,
             amount.text,
-            transType,
-            actionRate);
+            transType == "IncomeNoThe".tr ? "Income" : "Expence",
+            actionRate == "Daily".tr
+                ? "Daily"
+                : actionRate == "Weekly".tr
+                    ? "Weekly"
+                    : actionRate == "Monthly".tr
+                        ? "Monthly"
+                        : "Yearly");
         if (response['status'] == "success") {
           statusRequest = StatusRequest.success;
           Get.back();
@@ -82,17 +97,47 @@ class EditAutoTransactionController extends GetxController {
     }
   }
 
+  getAW(int tabType) async {
+    String type = tabType == 1 ? "Bank Account" : "Wallet";
+    awList.clear();
+    update();
+    var response = await viewAccountWalletData.postData(
+        myServices.sharedPreferences.getString("id")!, type);
+    if (response['status'] == "success") {
+      awList.addAll(response['data']);
+      if (awList.length >= 2) {
+        awList.insert(0, "Choose bank account/wallet".tr);
+        awData = "Choose bank account/wallet".tr;
+      } else if (awList.length == 1) {
+        awData = awList[0]['Name'];
+      }
+    }
+    update();
+  }
+
   clearFields() {
     title.clear();
-    titleType.clear();
     amount.clear();
-    changeTransType("Choose transaction type");
-    changeRate("Choose rate");
+    changeTransType("Choose transaction type".tr);
+    changeAWType("ChooseTypeNo".tr);
+    changeAWData("");
+    awList.clear();
+    changeRate("Choose rate".tr);
     update();
   }
 
   changeTransType(String type) {
     transType = type;
+    update();
+  }
+
+  changeAWType(String type) {
+    awType = type;
+    update();
+  }
+
+  changeAWData(String aw) {
+    awData = aw;
     update();
   }
 
@@ -103,14 +148,17 @@ class EditAutoTransactionController extends GetxController {
 
   updateControllerValues(
       String autoTitle,
-      String autoTitleType,
+      String acwaType,
+      String acwaData,
       String autoAmount,
       String autoTransType,
       String autoRate,
       String autoTransID,
       String autoTransDate) {
     title.text = autoTitle;
-    titleType.text = autoTitleType;
+    awType = acwaType;
+    awData = acwaData;
+    getAW(awType == "Bank Account".tr ? 1 : 2);
     amount.text = autoAmount;
     transType = autoTransType;
     actionRate = autoRate;
@@ -122,7 +170,6 @@ class EditAutoTransactionController extends GetxController {
   @override
   void onInit() {
     title = TextEditingController();
-    titleType = TextEditingController();
     amount = TextEditingController();
     actionDate = TextEditingController();
     super.onInit();

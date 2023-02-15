@@ -8,9 +8,10 @@ import 'package:mainflutterproject/Frontend/Core/Services/myservices.dart';
 
 class InitialAutoTransactionController extends GetxController {
   late TextEditingController transTitle;
-  late TextEditingController transTitleType;
   late TextEditingController transAmount;
   String transType = "Choose transaction type";
+  String awData = "";
+  String awType = "";
   late TextEditingController? transDate;
   AddTransactionData addTransactionData = AddTransactionData(Get.find());
   ViewAutoTransactionsData viewAutoTransactionsData =
@@ -24,7 +25,8 @@ class InitialAutoTransactionController extends GetxController {
     var response = await addTransactionData.postData(
         myServices.sharedPreferences.getString("id")!,
         transTitle.text,
-        transTitleType.text,
+        awData,
+        awType,
         transAmount.text,
         transType,
         transDate!.text);
@@ -52,7 +54,6 @@ class InitialAutoTransactionController extends GetxController {
   @override
   void onInit() {
     transTitle = TextEditingController();
-    transTitleType = TextEditingController();
     transAmount = TextEditingController();
     transDate = TextEditingController();
     super.onInit();

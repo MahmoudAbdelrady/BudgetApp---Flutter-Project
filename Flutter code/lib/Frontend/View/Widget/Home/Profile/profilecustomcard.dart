@@ -81,7 +81,8 @@ class ProfileCustomCard extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               onPressed: () {
-                controller.logout();
+                controller.logout(
+                    controller.myServices.sharedPreferences.getString("Lang")!);
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

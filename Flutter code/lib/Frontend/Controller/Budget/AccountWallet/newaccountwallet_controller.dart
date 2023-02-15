@@ -31,24 +31,38 @@ class NewAccountWalletController extends AccountWalletDialogController {
           statusRequest = StatusRequest.success;
           Get.back();
           Get.defaultDialog(
-            title: "Status".tr,
-            middleText: myServices.sharedPreferences.getString("Lang") == "en"
-                ? "${awType.tr} added successfully"
-                : "تمت إضافة ${awType.tr} بنجاح",
-            onConfirm: () => Get.back(),
-          );
+              title: "Status".tr,
+              middleText: myServices.sharedPreferences.getString("Lang") == "en"
+                  ? "${awType.tr} added successfully"
+                  : "تمت إضافة ${awType.tr} بنجاح",
+              actions: [
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.buttonscolor),
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: Text("Ok".tr))
+              ]);
           awName.clear();
           awAmount.clear();
           changeAWType("");
           fstate = true;
         } else {
           Get.defaultDialog(
-            title: "Alert".tr,
-            middleText: myServices.sharedPreferences.getString("Lang") == "en"
-                ? "${awType.tr} adding failed"
-                : "فشل إضافة ${awType.tr}",
-            onConfirm: () => Get.back(),
-          );
+              title: "Alert".tr,
+              middleText: myServices.sharedPreferences.getString("Lang") == "en"
+                  ? "${awType.tr} adding failed"
+                  : "فشل إضافة ${awType.tr}",
+              actions: [
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.buttonscolor),
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: Text("Ok".tr))
+              ]);
           statusRequest = StatusRequest.failure;
         }
         update();

@@ -26,7 +26,7 @@ class LoginControllerImp extends LoginController {
   login() async {
     var formdata = formstate.currentState;
     if (formdata!.validate()) {
-      StatusRequest.loading;
+      statusRequest = StatusRequest.loading;
       update();
       var response = await loginData.postData(username.text, pass.text);
       statusRequest = handlingData(response);

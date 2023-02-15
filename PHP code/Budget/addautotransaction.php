@@ -2,8 +2,9 @@
 include "../connect.php";
 include "../functions.php";
 $userID = filterRequest("User_ID");
+$awName = filterRequest("AW_Name");
+$awType = filterRequest("AW_Type");
 $title = filterRequest("Title");
-$titleType = filterRequest("Title_Type");
 $amount = filterRequest("Amount");
 $type = filterRequest("Type");
 $actionRate = filterRequest("ActionRate");
@@ -21,8 +22,8 @@ if($chkstmt->rowCount() > 0){
     }
 }
 else{
-    $insrtstmt = $con->prepare("INSERT INTO `auto_transactions`(`User_ID`,`Title`,`Title_Type`,`Amount`,`Type`,`ActionRate`,`ActionDate`) VALUES(?,?,?,?,?,?,?)");
-    $insrtstmt->execute(array($userID,$title,$titleType,$amount,$type,$actionRate,$actionDate));
+    $insrtstmt = $con->prepare("INSERT INTO `auto_transactions`(`User_ID`,`AW_Name`,`AW_Type`,`Title`,`Amount`,`Type`,`ActionRate`,`ActionDate`) VALUES(?,?,?,?,?,?,?,?)");
+    $insrtstmt->execute(array($userID,$awName,$awType,$title,$amount,$type,$actionRate,$actionDate));
     if($insrtstmt->rowCount() > 0){
         echo json_encode(array("status" => "success"));
     }

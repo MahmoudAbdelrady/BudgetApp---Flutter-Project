@@ -15,7 +15,7 @@ class ProfileController extends GetxController {
     update();
   }
 
-  logout() {
+  logout(String lang) {
     Get.defaultDialog(
         title: "Alert".tr,
         content: Text("LogoutConfirm".tr),
@@ -25,6 +25,8 @@ class ProfileController extends GetxController {
                   backgroundColor: AppColors.buttonscolor),
               onPressed: () {
                 myServices.sharedPreferences.clear();
+                myServices.sharedPreferences.setString("step", "1");
+                myServices.sharedPreferences.setString("Lang", lang);
                 Get.offAllNamed("login");
               },
               child: Text("Yes".tr)),

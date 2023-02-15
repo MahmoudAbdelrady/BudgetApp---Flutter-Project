@@ -12,7 +12,6 @@ class AutoTransactionsSelectBar extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 25),
       height: 50,
-      width: MediaQuery.of(context).size.height / 1.91,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(50)),
       child: GetBuilder<AutoTransactionsController>(builder: (controller) {

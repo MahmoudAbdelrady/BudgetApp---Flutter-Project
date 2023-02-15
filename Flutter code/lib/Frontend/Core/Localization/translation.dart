@@ -131,11 +131,11 @@ class MyTranslation extends Translations {
           "CorrectTypeAlert": "من فضلك إختر أنواع صحيحة",
           "TransAddSuccess": "تمت إضافة المعاملة بنجاح",
           "TransAddFail": "فشل إضافة المعاملة",
-          "ChooseTypeAlert": "من فضلك أختر النوع",
+          "ChooseTypeAlert": "من فضلك إختر النوع",
           "AutoTransEditSuccess": "تم تعديل معاملتك التلقائية بنجاح",
           "AutoTransEditFail":
               "فشل تعديل معاملتك التلقائية. من فضلك حاول مرة أخرى",
-          "ChooseAWAlert": "من فضلك أختر حسابك البنكي/محفظتك",
+          "ChooseAWAlert": "من فضلك إختر حسابك البنكي/محفظتك",
           "EmailMatchAlert":
               "بريدك الإلكتروني غير متطابق. من فضلك أعد الإدخال أخرى",
           "PrevEmailAlert":
@@ -175,6 +175,8 @@ class MyTranslation extends Translations {
           "Oct": "أكتوبر",
           "Nov": "نوفمبر",
           "Dec": "ديسمبر",
+          "Choose bank account/wallet": "إختر الحساب البنكي/المحفظة",
+          "ChooseTypeNo": "إختر النوع",
         },
         "en": {
           "Onboarding_Title1": "Welcome to Wallet-E",
@@ -349,6 +351,8 @@ class MyTranslation extends Translations {
           "Oct": "Oct",
           "Nov": "Nov",
           "Dec": "Dec",
+          "Choose bank account/wallet": "Choose bank account/wallet",
+          "ChooseTypeNo": "Choose Type",
         }
       };
 }

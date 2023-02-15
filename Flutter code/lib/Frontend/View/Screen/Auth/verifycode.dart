@@ -8,7 +8,7 @@ import 'package:mainflutterproject/Frontend/View/Widget/Auth/authpagetitle.dart'
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 
-class VerifyCode extends StatelessWidget {
+class VerifyCode extends GetView<VerifyCodeControllerImp> {
   const VerifyCode({Key? key}) : super(key: key);
 
   @override
@@ -16,38 +16,44 @@ class VerifyCode extends StatelessWidget {
     Get.put(VerifyCodeControllerImp());
     return Scaffold(
       backgroundColor: Colors.white,
-      body: GetBuilder<VerifyCodeControllerImp>(
-          builder: (controller) => HandlingDataRequest(
-              statusRequest: controller.statusRequest,
-              widget: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                child: ListView(children: [
-                  Image.asset(AppAssets.otp),
-                  ListTile(
-                      title: AuthPageTitle(authTitle: "OTP Title".tr),
-                      subtitle: Container(
-                        margin: const EdgeInsets.only(top: 7, bottom: 14),
-                        child: Text(
-                          "OTP Subtitle".tr,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      )),
-                  OTPTextField(
-                    length: 5,
-                    width: MediaQuery.of(context).size.width,
-                    fieldWidth: 40,
-                    textFieldAlignment: MainAxisAlignment.spaceAround,
-                    fieldStyle: FieldStyle.box,
-                    outlineBorderRadius: 15,
-                    otpFieldStyle: OtpFieldStyle(
-                        enabledBorderColor: AppColors.primarycolor,
-                        focusBorderColor: AppColors.buttonscolor),
-                    onCompleted: (pin) {
-                      controller.checkCode(pin);
-                    },
-                  ),
-                ]),
-              ))),
+      body: WillPopScope(
+        onWillPop: () async {
+          await controller.deleteUser();
+          return true;
+        },
+        child: GetBuilder<VerifyCodeControllerImp>(
+            builder: (controller) => HandlingDataRequest(
+                statusRequest: controller.statusRequest,
+                widget: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  child: ListView(children: [
+                    Image.asset(AppAssets.otp),
+                    ListTile(
+                        title: AuthPageTitle(authTitle: "OTP Title".tr),
+                        subtitle: Container(
+                          margin: const EdgeInsets.only(top: 7, bottom: 14),
+                          child: Text(
+                            "OTP Subtitle".tr,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        )),
+                    OTPTextField(
+                      length: 5,
+                      width: MediaQuery.of(context).size.width,
+                      fieldWidth: 40,
+                      textFieldAlignment: MainAxisAlignment.spaceAround,
+                      fieldStyle: FieldStyle.box,
+                      outlineBorderRadius: 15,
+                      otpFieldStyle: OtpFieldStyle(
+                          enabledBorderColor: AppColors.primarycolor,
+                          focusBorderColor: AppColors.buttonscolor),
+                      onCompleted: (pin) {
+                        controller.checkCode(pin);
+                      },
+                    ),
+                  ]),
+                ))),
+      ),
     );
   }
 }

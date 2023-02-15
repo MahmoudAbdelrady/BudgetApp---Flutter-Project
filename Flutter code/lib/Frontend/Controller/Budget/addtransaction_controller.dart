@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mainflutterproject/Backend/Core/Classes/statusrequest.dart';
+import 'package:mainflutterproject/Backend/RemoteData/Budget/AccountWallet/viewaccountwallet.dart';
 import 'package:mainflutterproject/Backend/RemoteData/Budget/addtransaction.dart';
 import 'package:mainflutterproject/Frontend/Core/Constants/appcolors.dart';
 import 'package:mainflutterproject/Frontend/Core/Services/myservices.dart';
@@ -8,24 +9,32 @@ import 'package:mainflutterproject/Frontend/Core/Services/myservices.dart';
 class AddTransactionController extends GetxController {
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
   late TextEditingController transTitle;
-  late TextEditingController transTitleType;
   late TextEditingController transAmount;
   String transType = "Choose transaction type".tr;
+  String awType = "ChooseTypeNo".tr;
+  // String awData = "Choose bank account/wallet".tr;
+  String awData = "";
   late TextEditingController? transDate;
   bool fstate = true;
+  List awList = [];
   AddTransactionData addTransactionData = AddTransactionData(Get.find());
+  ViewAccountWalletData viewAccountWalletData =
+      ViewAccountWalletData(Get.find());
   StatusRequest statusRequest = StatusRequest.none;
   MyServices myServices = Get.find();
   addTransaction() async {
     var formdata = formstate.currentState;
     if (formdata!.validate()) {
-      if (transType != "Choose transaction type".tr) {
+      if (transType != "Choose transaction type".tr &&
+          awType != "ChooseTypeNo".tr &&
+          (awData != "" && awData != "Choose bank account/wallet".tr)) {
         statusRequest = StatusRequest.loading;
         update();
         var response = await addTransactionData.postData(
             myServices.sharedPreferences.getString("id")!,
             transTitle.text,
-            transTitleType.text,
+            awData,
+            awType == "Bank Account".tr ? "Bank Account" : "Wallet",
             transAmount.text,
             transType == "IncomeNoThe".tr ? "Income" : "Expence",
             transDate!.text);
@@ -65,7 +74,7 @@ class AddTransactionController extends GetxController {
       } else {
         Get.defaultDialog(
             title: "Alert".tr,
-            middleText: "ChooseTypeAlert".tr,
+            middleText: "CorrectTypeAlert".tr,
             actions: [
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -89,12 +98,41 @@ class AddTransactionController extends GetxController {
     update();
   }
 
+  getAW(int tabType) async {
+    String type = tabType == 1 ? "Bank Account" : "Wallet";
+    awList.clear();
+    var response = await viewAccountWalletData.postData(
+        myServices.sharedPreferences.getString("id")!, type);
+    if (response['status'] == "success") {
+      awList.addAll(response['data']);
+      if (awList.length >= 2) {
+        awList.insert(0, "Choose bank account/wallet".tr);
+        awData = "Choose bank account/wallet".tr;
+      } else if (awList.length == 1) {
+        awData = awList[0]['Name'];
+      }
+    }
+    update();
+  }
+
+  changeAWType(String type) {
+    awType = type;
+    update();
+  }
+
+  changeAWData(String aw) {
+    awData = aw;
+    update();
+  }
+
   clearFields() {
     transTitle.clear();
-    transTitleType.clear();
     transAmount.clear();
     transDate!.clear();
     changeTransType("Choose transaction type".tr);
+    changeAWType("ChooseTypeNo".tr);
+    changeAWData("");
+    awList.clear();
     fstate = true;
     update();
   }
@@ -102,7 +140,6 @@ class AddTransactionController extends GetxController {
   @override
   void onInit() {
     transTitle = TextEditingController();
-    transTitleType = TextEditingController();
     transAmount = TextEditingController();
     transDate = TextEditingController();
     super.onInit();

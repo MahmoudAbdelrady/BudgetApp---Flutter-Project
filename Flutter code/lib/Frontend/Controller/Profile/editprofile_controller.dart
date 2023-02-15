@@ -28,8 +28,6 @@ class EditProfileController extends GetxController {
             .setString("username", response['data']['Username']);
         myServices.sharedPreferences
             .setString("phone", response['data']['Phone']);
-
-        // Get.off(const );
         update();
         Get.back();
         Get.defaultDialog(
@@ -44,6 +42,9 @@ class EditProfileController extends GetxController {
                   },
                   child: Text("Ok".tr))
             ]);
+      } else {
+        statusRequest = StatusRequest.failure;
+        update();
       }
     }
   }

@@ -1,5 +1,7 @@
 class AppApiLinks {
-  static const server = "http://10.0.2.2/BudgetApp_Php";
+  // static const server = "http://10.0.2.2/BudgetApp_Php";
+  static const server =
+      "https://budgetappflutter.000webhostapp.com/BudgetApp_Php";
   // ---------------- Authentication ----------------
   static const linklogin = "$server/Auth/login.php";
   static const linksignup = "$server/Auth/signup.php";
@@ -10,6 +12,7 @@ class AppApiLinks {
       "$server/Auth/ForgetPassword/forgetpasswordverifycode.php";
   static const linkresetpassword =
       "$server/Auth/ForgetPassword/resetpassword.php";
+  static const linkdeleteuser = "$server/Auth/deleteuser.php";
 
   // ---------------- Budget ----------------
   static const linkviewbudget = "$server/Budget/View/viewbudget.php";

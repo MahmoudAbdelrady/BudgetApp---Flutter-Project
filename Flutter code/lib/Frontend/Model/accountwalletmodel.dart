@@ -2,8 +2,10 @@ class AccountWalletModel {
   String? name;
   String? amount;
   String? type;
-  int? userID;
-  int? iD;
+  String? userID;
+  // int? userID;
+  String? iD;
+  // int? iD;
 
   AccountWalletModel({this.name, this.amount, this.type, this.userID, this.iD});
 

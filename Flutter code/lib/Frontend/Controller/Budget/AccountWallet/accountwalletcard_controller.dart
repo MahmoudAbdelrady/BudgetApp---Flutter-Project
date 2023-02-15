@@ -11,7 +11,7 @@ class AccountWalletCardController extends GetxController {
     DeleteAccountWalletData deleteAccountWalletData =
         DeleteAccountWalletData(Get.find());
     var response = await deleteAccountWalletData.postData(
-        awName!, myServices.sharedPreferences.getString("id")!);
+        awName!, awType!, myServices.sharedPreferences.getString("id")!);
     if (response['status'] == "success") {
       update();
     }

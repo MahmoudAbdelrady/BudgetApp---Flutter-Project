@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:mainflutterproject/Backend/Core/Classes/statusrequest.dart';
+import 'package:mainflutterproject/Backend/RemoteData/Auth/deleteuser.dart';
 import 'package:mainflutterproject/Backend/RemoteData/Auth/verifycode.dart';
 import 'package:mainflutterproject/Frontend/Core/Constants/approutes.dart';
 import 'package:mainflutterproject/Frontend/Core/Functions/handlingdata.dart';
@@ -12,6 +13,7 @@ class VerifyCodeControllerImp extends VerifyCodeController {
   String? email;
   StatusRequest statusRequest = StatusRequest.none;
   VerifyCodeData verifyCodeData = VerifyCodeData(Get.find());
+  DeleteUserData deleteUserData = DeleteUserData(Get.find());
   @override
   checkCode(String pin) async {
     statusRequest = StatusRequest.loading;
@@ -27,6 +29,13 @@ class VerifyCodeControllerImp extends VerifyCodeController {
       }
     }
     update();
+  }
+
+  deleteUser() async {
+    var response = await deleteUserData.postData(email!);
+    if (response['status'] == "success") {
+      update();
+    }
   }
 
   @override
